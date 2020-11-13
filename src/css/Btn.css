@@ -37,7 +37,6 @@ button:hover {
 }
 
 .btn::after {
-  /*background-color: #f00;*/
   height: 150%;
   left: -35%;
   top: 0;
