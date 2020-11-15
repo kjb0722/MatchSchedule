@@ -3,6 +3,7 @@ import '../css/MainList.css';
 
 class MainList extends Component {
   render() {
+    const test = 'asdf';
     return (
       <div>
         <p>11월 1일(일)</p>
@@ -17,6 +18,7 @@ class MainList extends Component {
           <span>첼시</span>
           <div>경기기록</div>
         </div>
+        <div>{test}</div>
       </div>
     );
   }
