@@ -2,8 +2,21 @@ import React, { Component } from 'react';
 import '../css/MainList.css';
 
 class MainList extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      test: null,
+      test2: null,
+    };
+  }
+  componentDidMount() {
+    fetch('http://localhost:3001/api')
+      .then((res) => res.json())
+      .then((data) => this.setState({ test: data.test, test2: data.test2 }));
+  }
   render() {
-    const test = 'asdf';
+    const { test } = this.state;
+    const { test2 } = this.state;
     return (
       <div>
         <p>11월 1일(일)</p>
@@ -19,6 +32,7 @@ class MainList extends Component {
           <div>경기기록</div>
         </div>
         <div>{test}</div>
+        <div>{test2}</div>
       </div>
     );
   }
