@@ -8,9 +8,11 @@
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "node-cron": "^2.0.3",
+    "puppeteer": "^5.5.0",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
-    "react-scripts": "2.1.7"
+    "react-scripts": "2.1.7",
+    "sanitize-html": "^2.1.2"
   },
   "scripts": {
     "start": "react-scripts start",
