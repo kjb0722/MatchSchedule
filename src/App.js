@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import logo from './img/logo_1.png';
 import './App.css';
-import AppMenu from './ui/AppMenu.jsx';
+// import AppMenu from './ui/AppMenu.jsx';
 import MainKind from './ui/MainKind.jsx';
 import MainList from './ui/MainList.jsx';
 

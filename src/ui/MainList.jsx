@@ -17,15 +17,23 @@ class MainList extends Component {
       });
   }
   render() {
-    const year = new Date().getFullYear();
+    const month = new Date().getMonth() + 1;
+    const day = new Date().getDate();
+    let date;
     return (
       <div>
         {this.state.data.map((data, i) => {
-          if (data.time !== '') {
+          let sameDateCheck = false;
+          if (data.date !== '') {
+            date = data.date.split('.');
+          } else {
+            sameDateCheck = true;
+          }
+          if (data.time !== '' && date[0] >= month && date[1] >= day) {
             return (
               <ListInfo
                 key={i}
-                date={data.date}
+                date={!sameDateCheck ? `${date[0]}월 ${date[1]}일` : ''}
                 time={data.time}
                 place={data.place}
                 teamLeft={data.teamLeft}

@@ -5,19 +5,8 @@
 const puppeteer = require('puppeteer');
 const cheerio = require('cheerio');
 
-const mysql = require('mysql');
-const dbconfig = require('./database.js');
-const connection = mysql.createConnection(dbconfig);
-
-connection.connect();
-
 let data = [];
 (async () => {
-  connection.query('select * from matchKind', (error, rows, fields) => {
-    if (error) throw error;
-    console.log(rows);
-  });
-
   // 브라우저를 실행한다.
   const browser = await puppeteer.launch();
 
