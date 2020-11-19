@@ -2,21 +2,31 @@
 동적 페이지 크롤링을 위해 cherrio -> puppeteer 변경
 */
 
-// puppeteer을 가져온다.
 const puppeteer = require('puppeteer');
-// cheerio를 가져온다.
 const cheerio = require('cheerio');
+
+const mysql = require('mysql');
+const dbconfig = require('./database.js');
+const connection = mysql.createConnection(dbconfig);
+
+connection.connect();
 
 let data = [];
 (async () => {
+  connection.query('select * from matchKind', (error, rows, fields) => {
+    if (error) throw error;
+    console.log(rows);
+  });
+
   // 브라우저를 실행한다.
-  // 옵션으로 headless모드를 끌 수 있다.
   const browser = await puppeteer.launch();
 
   // 새로운 페이지를 연다.
   const page = await browser.newPage();
 
-  await page.goto('https://sports.news.naver.com/wfootball/schedule/index.nhn');
+  await page.goto(
+    'https://sports.news.naver.com/wfootball/schedule/index.nhn?category=epl',
+  );
 
   // 페이지의 HTML을 가져온다.
   const content = await page.content();

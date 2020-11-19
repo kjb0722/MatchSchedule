@@ -10,13 +10,14 @@ class MainList extends Component {
     };
   }
   componentDidMount() {
-    fetch('http://localhost:3001/api')
+    fetch('http://localhost:3001/craw')
       .then((res) => res.json())
       .then((data) => {
         this.setState({ data: data.data });
       });
   }
   render() {
+    const year = new Date().getFullYear();
     return (
       <div>
         {this.state.data.map((data, i) => {

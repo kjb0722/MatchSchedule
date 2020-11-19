@@ -7,8 +7,7 @@ const craw = require('./craw.js');
 
 app.use(cors());
 app.use(bodyParser.json());
-app.use('/api', (req, res) => {
-  console.log(craw);
+app.use('/craw', (req, res) => {
   res.json({ data: craw });
 });
 
