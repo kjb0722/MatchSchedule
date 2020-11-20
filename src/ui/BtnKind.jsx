@@ -2,23 +2,14 @@ import React, { Component } from 'react';
 import '../css/Btn.css';
 
 class BtnKind extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      kindChoice: false,
-    };
-  }
-  kindChange = () => {
-    this.setState({ kindChoice: true });
+  kindChange = (e) => {
+    e.preventDefault();
+    this.props.getChoiceKind(this.props.name);
   };
   render() {
     return (
-      <button
-        onClick={this.kindChange}
-        className={this.kindChoice ? 'kindChoice' : ''}
-      >
+      <button onClick={this.kindChange} className={'btn ' + this.props.choice}>
         {this.props.name}
-        {this.kindChoice ? 'kindChoice' : ''}
       </button>
     );
   }

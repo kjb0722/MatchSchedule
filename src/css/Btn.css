@@ -50,3 +50,8 @@ button:hover {
   height: 100%;
   width: 135%;
 }
+
+.kindChoice {
+  color: #867979;
+  background-color: #fff;
+}
