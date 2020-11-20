@@ -10,7 +10,18 @@ class MainList extends Component {
     };
   }
   componentDidMount() {
-    fetch('http://localhost:3001/craw')
+    fetch('http://localhost:3001/craw', {
+      method: 'post',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        title: 'foo',
+        body: 'bar',
+        userId: 1,
+      }),
+    })
       .then((res) => res.json())
       .then((data) => {
         this.setState({ data: data.data });
@@ -42,6 +53,8 @@ class MainList extends Component {
                 teamRightScore={data.teamRightScore}
               />
             );
+          } else {
+            return null;
           }
         })}
       </div>

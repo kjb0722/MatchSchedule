@@ -19,9 +19,10 @@ class MainKind extends Component {
   render() {
     return (
       <div className="main-kind">
-        <BtnKind name="LCK"></BtnKind>
-        <BtnKind name="라리가 리그"></BtnKind>
-        <BtnKind name="프리미어 리그"></BtnKind>
+        {this.state.data.map((data, i) => {
+          console.log(data);
+          return <BtnKind key={i} name={data.name}></BtnKind>;
+        })}
       </div>
     );
   }
