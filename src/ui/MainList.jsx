@@ -7,9 +7,12 @@ class MainList extends Component {
     super(props);
     this.state = {
       data: [],
+      kind: this.props.choiceKind,
     };
   }
-  componentDidMount() {
+
+  craw = () => {
+    this.setState({ kind: this.props.choiceKind });
     fetch('http://localhost:3001/craw', {
       method: 'post',
       headers: {
@@ -17,15 +20,22 @@ class MainList extends Component {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        title: 'foo',
-        body: 'bar',
-        userId: 1,
+        kind: this.props.choiceKind,
       }),
     })
       .then((res) => res.json())
       .then((data) => {
         this.setState({ data: data.data });
       });
+  };
+
+  componentDidMount() {
+    this.craw();
+  }
+  componentDidUpdate() {
+    if (this.props.choiceKind !== this.state.kind) {
+      this.craw();
+    }
   }
   render() {
     const month = new Date().getMonth() + 1;
@@ -40,6 +50,7 @@ class MainList extends Component {
           } else {
             sameDateCheck = true;
           }
+          console.log(date);
           if (data.time !== '' && date[0] >= month && date[1] >= day) {
             return (
               <ListInfo

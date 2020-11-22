@@ -7,7 +7,6 @@ class MainKind extends Component {
     super(props);
     this.state = {
       data: [],
-      choiceKind: '',
     };
   }
   componentDidMount() {
@@ -17,23 +16,19 @@ class MainKind extends Component {
         this.setState({ data: data.data });
       });
   }
-  getChoiceKind = (kind) => {
-    this.setState({ choiceKind: kind });
-  };
   render() {
     return (
       <div className="main-kind">
         {this.state.data.map((data, i) => {
           return (
             <BtnKind
-              getChoiceKind={this.getChoiceKind}
+              getChoiceKind={this.props.getChoiceKind}
               key={i}
               name={data.name}
-              choice={this.state.choiceKind === data.name ? 'kindChoice' : ''}
+              choice={this.props.choiceKind === data.name ? 'kindChoice' : ''}
             ></BtnKind>
           );
         })}
-        <p>{this.state.choiceKind}</p>
       </div>
     );
   }
