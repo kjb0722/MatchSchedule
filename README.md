@@ -22,4 +22,4 @@
 현재 진행되는 경기는 녹색 테두리로 표시
 
 ![로딩](https://user-images.githubusercontent.com/58472980/100017045-a8737400-2e1d-11eb-9288-a643b202dce0.PNG)
-로딩 
+로딩 화면
