@@ -1,7 +1,10 @@
-@import url('https://fonts.googleapis.com/css2?family=Jua&display=swap');
-
+/* @import url('https://fonts.googleapis.com/css2?family=Jua&display=swap'); */
+/* @import url('https://fonts.googleapis.com/css2?family=Poor+Story&display=swap'); */
+@import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap');
 * {
-  font-family: 'Jua', sans-serif;
+  /* font-family: 'Jua', sans-serif; */
+  /* font-family: 'Poor Story', cursive; */
+  font-family: 'Do Hyeon', sans-serif;
 }
 
 body {

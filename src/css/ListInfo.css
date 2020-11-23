@@ -1,0 +1,28 @@
+span {
+  position: relative;
+  display: inline-block;
+  margin-left: 2vh;
+  vertical-align: middle;
+}
+
+.infoDate {
+  color: #afb7a1;
+}
+
+.infoTime {
+  color: #afb7a1;
+  width: 10vh;
+}
+
+.infoPlace {
+  width: 30vh;
+}
+
+.infoTeam {
+  width: 25vh;
+  text-align: center;
+}
+
+.infoTeamScore {
+  width: 2vh;
+}

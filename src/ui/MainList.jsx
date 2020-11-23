@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import '../css/MainList.css';
 import ListInfo from './ListInfo.jsx';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 class MainList extends Component {
   constructor(props) {
@@ -8,6 +9,8 @@ class MainList extends Component {
     this.state = {
       data: [],
       kind: this.props.choiceKind,
+      completed: 0,
+      isLoading: true,
     };
   }
 
@@ -25,49 +28,66 @@ class MainList extends Component {
     })
       .then((res) => res.json())
       .then((data) => {
-        this.setState({ data: data.data });
+        this.setState({ data: data.data, isLoading: false });
       });
   };
 
+  progress = () => {
+    const { completed } = this.state;
+    this.setState({ completed: completed >= 100 ? 0 : completed + 1 });
+  };
+
   componentDidMount() {
+    this.timer = setInterval(this.progress, 20);
     this.craw();
   }
   componentDidUpdate() {
     if (this.props.choiceKind !== this.state.kind) {
+      this.setState({ isLoading: true });
       this.craw();
     }
   }
   render() {
+    const { data, isLoading, completed } = this.state;
     const month = new Date().getMonth() + 1;
     const day = new Date().getDate();
     let date;
     return (
       <div>
-        {this.state.data.map((data, i) => {
-          let sameDateCheck = false;
-          if (data.date !== '') {
-            date = data.date.split('.');
-          } else {
-            sameDateCheck = true;
-          }
+        {isLoading ? (
+          <CircularProgress
+            className="progress"
+            size="25rem"
+            variant="determinate"
+            value={completed}
+          />
+        ) : (
+          data.map((data, i) => {
+            let sameDateCheck = false;
+            if (data.date !== '') {
+              date = data.date.split('.');
+            } else {
+              sameDateCheck = true;
+            }
 
-          if (data.time !== '' && date[0] >= month && date[1] >= day) {
-            return (
-              <ListInfo
-                key={i}
-                date={!sameDateCheck ? `${date[0]}월 ${date[1]}일` : ''}
-                time={data.time}
-                place={data.place}
-                teamLeft={data.teamLeft}
-                teamLeftScore={data.teamLeftScore}
-                teamRight={data.teamRight}
-                teamRightScore={data.teamRightScore}
-              />
-            );
-          } else {
-            return null;
-          }
-        })}
+            if (data.time !== '' && date[0] >= month && date[1] >= day) {
+              return (
+                <ListInfo
+                  key={i}
+                  date={!sameDateCheck ? `${date[0]}월 ${date[1]}일` : ''}
+                  time={data.time}
+                  place={data.place}
+                  teamLeft={data.teamLeft}
+                  teamLeftScore={data.teamLeftScore}
+                  teamRight={data.teamRight}
+                  teamRightScore={data.teamRightScore}
+                />
+              );
+            } else {
+              return null;
+            }
+          })
+        )}
       </div>
     );
   }

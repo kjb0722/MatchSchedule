@@ -18,6 +18,7 @@ button {
   position: relative;
   text-transform: uppercase;
   cursor: pointer;
+  height: 7vh;
 }
 
 button::before,

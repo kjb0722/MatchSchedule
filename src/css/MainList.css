@@ -1,14 +1,14 @@
 .list {
-  width: 100vh;
-  height: 15vh;
+  text-align: left;
+  width: 120vh;
+  height: 8vh;
   border: 3px solid #fff;
   border-radius: 10px;
   display: table-cell;
   vertical-align: middle;
 }
 
-span {
-  position: relative;
-  height: 20vh;
-  padding: 10px;
+.progress {
+  margin-top: 15vh;
+  color: #c6f68d !important;
 }
