@@ -47,10 +47,17 @@ class MainList extends Component {
       this.craw();
     }
   }
+  componentWillUnmount() {
+    clearInterval(this.timer);
+  }
+
   render() {
     const { data, isLoading, completed } = this.state;
+    const currentDate = new Date();
+    const year = new Date().getFullYear();
     const month = new Date().getMonth() + 1;
     const day = new Date().getDate();
+
     let date;
     return (
       <div>
@@ -71,6 +78,18 @@ class MainList extends Component {
             }
 
             if (data.time !== '' && date[0] >= month && date[1] >= day) {
+              const time = data.time.split(':');
+              const gameStartDate = new Date(
+                year,
+                date[0] - 1,
+                date[1],
+                time[0],
+                time[1],
+              ).getTime();
+              const elapsedTime =
+                (currentDate.getTime() - gameStartDate) / 1000 / 60;
+              const isCurrentGamePlay =
+                elapsedTime <= 90 && elapsedTime >= 0 ? 'gamePlay' : '';
               return (
                 <ListInfo
                   key={i}
@@ -81,6 +100,8 @@ class MainList extends Component {
                   teamLeftScore={data.teamLeftScore}
                   teamRight={data.teamRight}
                   teamRightScore={data.teamRightScore}
+                  gameEnd={data.gameEnd}
+                  isCurrentGamePlay={isCurrentGamePlay}
                 />
               );
             } else {

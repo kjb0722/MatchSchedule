@@ -65,7 +65,18 @@ app.post('/craw', (req, res) => {
               $(list).find('td > div > span.team_rigth > span.score').text() ===
               ''
                 ? '0'
-                : $(list).find('td > div > span.team_left > span.score').text();
+                : $(list)
+                    .find('td > div > span.team_right > span.score')
+                    .text();
+            const teamLeftWin = $(list)
+              .find('td > div > span.team_left > span.win')
+              .text();
+            const teamRightWin = $(list)
+              .find('td > div > span.team_right > span.win')
+              .text();
+            const gameEnd =
+              teamLeftWin !== '' || teamRightWin !== '' ? 'gameEnd' : '';
+
             craw.push({
               i: i,
               date: date,
@@ -75,6 +86,7 @@ app.post('/craw', (req, res) => {
               teamLeftScore: teamLeftScore,
               teamRight: teamRight,
               teamRightScore: teamRightScore,
+              gameEnd: gameEnd,
             });
           } else if (kind === 'LCK') {
             const time = $(list).find('td.time > span').text();
@@ -101,6 +113,7 @@ app.post('/craw', (req, res) => {
                 : $(list)
                     .find('td.game > div > span.team_left > span.score')
                     .text();
+            const isGameEnd = false;
             craw.push({
               i: i,
               date: date,
@@ -110,6 +123,7 @@ app.post('/craw', (req, res) => {
               teamLeftScore: teamLeftScore,
               teamRight: teamRight,
               teamRightScore: teamRightScore,
+              isGameEnd: isGameEnd,
             });
           }
         });

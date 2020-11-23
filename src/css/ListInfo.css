@@ -1,3 +1,13 @@
+.list {
+  text-align: left;
+  width: 120vh;
+  height: 8vh;
+  border: 3px solid #fff;
+  border-radius: 10px;
+  display: table-cell;
+  vertical-align: middle;
+}
+
 span {
   position: relative;
   display: inline-block;
@@ -25,4 +35,17 @@ span {
 
 .infoTeamScore {
   width: 2vh;
+}
+
+.gameEnd {
+  border: 3px solid #c2216a;
+}
+
+.gamePlay {
+  border: 3px solid #23d98a;
+}
+
+.btnGamePlay {
+  font-size: calc(10px + 0.8vmin);
+  color: #23d98a !important;
 }
