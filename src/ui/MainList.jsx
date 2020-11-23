@@ -43,7 +43,7 @@ class MainList extends Component {
   }
   componentDidUpdate() {
     if (this.props.choiceKind !== this.state.kind) {
-      this.setState({ isLoading: true });
+      this.setState({ isLoading: true, isData: false });
       this.craw();
     }
   }
@@ -57,14 +57,13 @@ class MainList extends Component {
     const year = new Date().getFullYear();
     const month = new Date().getMonth() + 1;
     const day = new Date().getDate();
-
     let date;
     return (
       <div>
         {isLoading ? (
           <CircularProgress
             className="progress"
-            size="25rem"
+            size="20rem"
             variant="determinate"
             value={completed}
           />
@@ -90,6 +89,7 @@ class MainList extends Component {
                 (currentDate.getTime() - gameStartDate) / 1000 / 60;
               const isCurrentGamePlay =
                 elapsedTime <= 90 && elapsedTime >= 0 ? 'gamePlay' : '';
+
               return (
                 <ListInfo
                   key={i}
