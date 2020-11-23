@@ -43,37 +43,75 @@ app.post('/craw', (req, res) => {
         // 모든 리스트를 순환한다.
         lists.each((index, list) => {
           const i = index;
-          const date = $(list).find('th > div em').text();
-          // const time = $(list).find('td.time_place > div > span.time').text();
-          const time = $(list).find('td.time > span').text();
-          console.log(time);
-          const place = $(list).find('td.time_place > div > span.place').text();
-          const teamLeft = $(list)
-            .find('td > div > span.team_left > span.name')
-            .text();
-          const teamLeftScore =
-            $(list).find('td > div > span.team_left > span.score').text() === ''
-              ? '0'
-              : $(list).find('td > div > span.team_left > span.score').text();
-          const teamRight = $(list)
-            .find('td > div > span.team_right > span.name')
-            .text();
-          const teamRightScore =
-            $(list).find('td > div > span.team_rigth > span.score').text() ===
-            ''
-              ? '0'
-              : $(list).find('td > div > span.team_left > span.score').text();
+          const date = $(list).find('th em').text();
 
-          craw.push({
-            i: i,
-            date: date,
-            time: time,
-            place: place,
-            teamLeft: teamLeft,
-            teamLeftScore: teamLeftScore,
-            teamRight: teamRight,
-            teamRightScore: teamRightScore,
-          });
+          if (kind === 'PREMIER LEAGUE' || kind === 'LALIGA') {
+            const time = $(list).find('td.time_place > div > span.time').text();
+            const place = $(list)
+              .find('td.time_place > div > span.place')
+              .text();
+            const teamLeft = $(list)
+              .find('td > div > span.team_left > span.name')
+              .text();
+            const teamLeftScore =
+              $(list).find('td > div > span.team_left > span.score').text() ===
+              ''
+                ? '0'
+                : $(list).find('td > div > span.team_left > span.score').text();
+            const teamRight = $(list)
+              .find('td > div > span.team_right > span.name')
+              .text();
+            const teamRightScore =
+              $(list).find('td > div > span.team_rigth > span.score').text() ===
+              ''
+                ? '0'
+                : $(list).find('td > div > span.team_left > span.score').text();
+            craw.push({
+              i: i,
+              date: date,
+              time: time,
+              place: place,
+              teamLeft: teamLeft,
+              teamLeftScore: teamLeftScore,
+              teamRight: teamRight,
+              teamRightScore: teamRightScore,
+            });
+          } else if (kind === 'LCK') {
+            const time = $(list).find('td.time > span').text();
+            const place = '';
+            const teamLeft = $(list)
+              .find('td.game > div > span.team_left > span.name')
+              .text();
+            const teamLeftScore =
+              $(list)
+                .find('td.game > div > span.team_left > span.score')
+                .text() === ''
+                ? '0'
+                : $(list)
+                    .find('td.game > div > span.team_left > span.score')
+                    .text();
+            const teamRight = $(list)
+              .find('td.game > div > span.team_right > span.name')
+              .text();
+            const teamRightScore =
+              $(list)
+                .find('td.game > div > span.team_rigth > span.score')
+                .text() === ''
+                ? '0'
+                : $(list)
+                    .find('td.game > div > span.team_left > span.score')
+                    .text();
+            craw.push({
+              i: i,
+              date: date,
+              time: time,
+              place: place,
+              teamLeft: teamLeft,
+              teamLeftScore: teamLeftScore,
+              teamRight: teamRight,
+              teamRightScore: teamRightScore,
+            });
+          }
         });
         // 브라우저를 종료한다.
         browser.close();

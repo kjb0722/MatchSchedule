@@ -50,7 +50,7 @@ class MainList extends Component {
           } else {
             sameDateCheck = true;
           }
-          console.log(date);
+
           if (data.time !== '' && date[0] >= month && date[1] >= day) {
             return (
               <ListInfo
