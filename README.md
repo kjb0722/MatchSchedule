@@ -10,10 +10,12 @@
 * 라이브러리 & 프레임워크
   - express
   - puppeteer, cheerio
+  - material-ui
 
 ## 설명
 * 화면 구성은 React를 사용하고 서버 구성은 Node.js로 구성
-* puppeteer를 이용하여 크롤링 후 cheerio로 파싱
+* puppeteer를 사용하여 크롤링 후 cheerio로 파싱
+* material-ui를 사용하여 로딩 Progress 구성
 
 ## 화면
 ![메인](https://user-images.githubusercontent.com/58472980/100016564-f76cd980-2e1c-11eb-8569-08e0be52f136.PNG)
