@@ -5,4 +5,6 @@
 ## 사용 기술
 * HTML, CSS, JavaScript
 * React
+* Node.js 12.18.1
+
 ## 화면
